@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net48</TargetFramework>
+		<UseWPF>true</UseWPF>
+		<PlatformTarget>x86</PlatformTarget>
+		
+		<!-- 32-bit -->
+		<Nullable>disable</Nullable>
+		<RootNamespace>IDEF3Editor</RootNamespace>
+		<AssemblyName>IDEF3Editor</AssemblyName>
+		<Platforms>AnyCPU;x86</Platforms>
+	</PropertyGroup>
+
+	<!-- Удаляем .exe.config после сборки — он не нужен на Windows 10/11 -->
+	<Target Name="DeleteAppConfig" AfterTargets="Build">
+		<Delete Files="$(OutputPath)$(AssemblyName).exe.config" />
+	</Target>
+
+	<ItemGroup>
+		<PackageReference Include="Costura.Fody" Version="6.1.0">
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		  <PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="Fody" Version="6.9.3">
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		  <PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+</Project>

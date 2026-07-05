@@ -1,0 +1,141 @@
+<!-- Диалоговое окно свойств диаграммы: название, автор, описание, дата создания -->
+<Window x:Class="IDEF3Editor.DiagramPropertiesDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Свойства диаграммы"
+        Width="440" Height="380"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow"
+        ShowInTaskbar="False"
+        Background="#2B2D30">
+
+    <Window.Resources>
+        <!-- Стиль поля ввода: тёмный фон, белый текст, оранжевая рамка фокуса -->
+        <Style x:Key="InputField" TargetType="TextBox">
+            <Setter Property="Padding"              Value="8,6"/>
+            <Setter Property="FontSize"             Value="13"/>
+            <Setter Property="Background"           Value="#3D3F43"/>
+            <Setter Property="Foreground"           Value="#E8E9EA"/>
+            <Setter Property="CaretBrush"           Value="#E8650A"/>
+            <Setter Property="BorderBrush"          Value="#505357"/>
+            <Setter Property="BorderThickness"      Value="1"/>
+            <Setter Property="SelectionBrush"       Value="#E8650A"/>
+        </Style>
+        <!-- Стиль подписи поля: маленький серый заголовок над полем ввода -->
+        <Style x:Key="FieldLabel" TargetType="TextBlock">
+            <Setter Property="FontSize"   Value="11"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#9B9EA3"/>
+            <Setter Property="Margin"     Value="0,0,0,4"/>
+        </Style>
+        <!-- Стиль кнопки действия: скруглённые углы, эффекты наведения и нажатия -->
+        <Style x:Key="ActionBtn" TargetType="Button">
+            <Setter Property="Height"          Value="34"/>
+            <Setter Property="Width"           Value="100"/>
+            <Setter Property="FontSize"        Value="12"/>
+            <Setter Property="FontWeight"      Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor"          Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="4"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <!-- Наведение курсора: небольшое затемнение -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Opacity" Value="0.82"/>
+                            </Trigger>
+                            <!-- Нажатие: более сильное затемнение -->
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Bd" Property="Opacity" Value="0.65"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <!-- Внешняя рамка в стиле приложения (тёмный фон) -->
+    <Border Background="#2B2D30" Padding="20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>  <!-- заголовок окна -->
+                <RowDefinition Height="16"/>
+                <RowDefinition Height="Auto"/>  <!-- поле «Название» -->
+                <RowDefinition Height="12"/>
+                <RowDefinition Height="Auto"/>  <!-- поле «Автор» -->
+                <RowDefinition Height="12"/>
+                <RowDefinition Height="*"/>     <!-- поле «Описание» (растягивается) -->
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>  <!-- метка даты создания -->
+                <RowDefinition Height="14"/>
+                <RowDefinition Height="Auto"/>  <!-- кнопки «Отмена» / «Сохранить» -->
+            </Grid.RowDefinitions>
+
+            <!-- Заголовок диалога -->
+            <TextBlock Grid.Row="0"
+                       Text="Свойства диаграммы"
+                       FontSize="15" FontWeight="Bold"
+                       Foreground="White"/>
+
+            <!-- Поле ввода названия диаграммы (обязательное) -->
+            <StackPanel Grid.Row="2">
+                <TextBlock Text="Название диаграммы" Style="{StaticResource FieldLabel}"/>
+                <TextBox x:Name="NameBox" Style="{StaticResource InputField}"/>
+            </StackPanel>
+
+            <!-- Поле ввода автора диаграммы -->
+            <StackPanel Grid.Row="4">
+                <TextBlock Text="Автор" Style="{StaticResource FieldLabel}"/>
+                <TextBox x:Name="AuthorBox" Style="{StaticResource InputField}"/>
+            </StackPanel>
+
+            <!-- Многострочное поле описания (необязательное) -->
+            <StackPanel Grid.Row="6">
+                <TextBlock Text="Описание (необязательно)"
+                           Style="{StaticResource FieldLabel}"/>
+                <TextBox x:Name="DescriptionBox"
+                         Style="{StaticResource InputField}"
+                         Height="80"
+                         TextWrapping="Wrap"
+                         AcceptsReturn="True"
+                         VerticalScrollBarVisibility="Auto"/>
+            </StackPanel>
+
+            <!-- Дата создания диаграммы (только для чтения, заполняется из code-behind) -->
+            <TextBlock Grid.Row="8"
+                       x:Name="CreatedLabel"
+                       FontSize="11"
+                       Foreground="#6B6E73"/>
+
+            <!-- Кнопки управления диалогом -->
+            <StackPanel Grid.Row="10"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right">
+                <!-- Отмена: закрыть без сохранения -->
+                <Button x:Name="CancelBtn"
+                        Content="Отмена"
+                        Style="{StaticResource ActionBtn}"
+                        Background="#505357"
+                        Foreground="White"
+                        Margin="0,0,10,0"
+                        Click="CancelBtn_Click"/>
+                <!-- Сохранить: применить изменения и закрыть -->
+                <Button x:Name="OkBtn"
+                        Content="Сохранить"
+                        Style="{StaticResource ActionBtn}"
+                        Background="#E8650A"
+                        Foreground="White"
+                        Click="OkBtn_Click"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

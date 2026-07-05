@@ -1,0 +1,435 @@
+<!-- Справочное окно нотации IDEF3: четыре вкладки с описанием стандарта,
+     элементов диаграммы, типов связей и управления редактором -->
+<Window x:Class="IDEF3Editor.ReferenceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Справочник IDEF3"
+        Width="740" Height="640"
+        MinWidth="580" MinHeight="420"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="SingleBorderWindow"
+        ShowInTaskbar="False">
+
+    <Window.Resources>
+        <!-- Стиль крупного заголовка раздела (H1) -->
+        <Style x:Key="H1" TargetType="TextBlock">
+            <Setter Property="FontSize"   Value="17"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#1C2B3A"/>
+            <Setter Property="Margin"     Value="0,0,0,8"/>
+        </Style>
+        <!-- Стиль заголовка подраздела (H2), оранжевый акцентный цвет -->
+        <Style x:Key="H2" TargetType="TextBlock">
+            <Setter Property="FontSize"   Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#E8650A"/>
+            <Setter Property="Margin"     Value="0,14,0,4"/>
+        </Style>
+        <!-- Стиль основного текста: переносы строк, увеличенный межстрочный интервал -->
+        <Style x:Key="Body" TargetType="TextBlock">
+            <Setter Property="FontSize"     Value="12"/>
+            <Setter Property="Foreground"   Value="#2C3E50"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="LineHeight"   Value="20"/>
+            <Setter Property="Margin"       Value="0,0,0,6"/>
+        </Style>
+        <!-- Стиль блока с кодом / псевдографикой: голубоватый фон, рамка, скруглённые углы -->
+        <Style x:Key="Code" TargetType="Border">
+            <Setter Property="Background"      Value="#EBF5FB"/>
+            <Setter Property="BorderBrush"     Value="#AED6F1"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius"    Value="4"/>
+            <Setter Property="Padding"         Value="10,6"/>
+            <Setter Property="Margin"          Value="0,4,0,8"/>
+        </Style>
+        <!-- Стиль кнопки-вкладки: прозрачный фон, нижняя рамка как индикатор активности -->
+        <Style x:Key="NavBtn" TargetType="Button">
+            <Setter Property="Height"          Value="34"/>
+            <Setter Property="Padding"         Value="14,0"/>
+            <Setter Property="Background"      Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0,0,0,2"/>
+            <Setter Property="BorderBrush"     Value="Transparent"/>
+            <Setter Property="FontSize"        Value="12"/>
+            <Setter Property="Foreground"      Value="#7F8C8D"/>
+            <Setter Property="Cursor"          Value="Hand"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Тёмная шапка с заголовком окна -->
+        <Border Grid.Row="0" Background="#2B2D30" Padding="16,12">
+            <TextBlock Text="Справочник IDEF3 — нотация, элементы и управление"
+                       FontSize="15" FontWeight="Bold" Foreground="White"/>
+        </Border>
+
+        <!-- Панель вкладок: Tag кнопки соответствует индексу страницы (0–3) -->
+        <Border Grid.Row="1" Background="White"
+                BorderBrush="#DDE1E7" BorderThickness="0,0,0,1">
+            <StackPanel Orientation="Horizontal" Margin="8,0">
+                <Button x:Name="TabNotation" Content="Нотация IDEF3"
+                        Style="{StaticResource NavBtn}" Click="Tab_Click" Tag="0"/>
+                <Button x:Name="TabBlocks"   Content="Элементы"
+                        Style="{StaticResource NavBtn}" Click="Tab_Click" Tag="1"/>
+                <Button x:Name="TabLinks"    Content="Связи"
+                        Style="{StaticResource NavBtn}" Click="Tab_Click" Tag="2"/>
+                <Button x:Name="TabControls" Content="Управление"
+                        Style="{StaticResource NavBtn}" Click="Tab_Click" Tag="3"/>
+            </StackPanel>
+        </Border>
+
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" Background="#F5F5F5">
+            <Grid>
+
+                <!-- ══ ВКЛАДКА 0: НОТАЦИЯ IDEF3 — общее описание стандарта ══ -->
+                <StackPanel x:Name="PageNotation" Margin="24,20,24,24" Background="#F5F5F5">
+                    <TextBlock Style="{StaticResource H1}" Text="Что такое IDEF3?"/>
+                    <TextBlock Style="{StaticResource Body}">
+IDEF3 (Integrated DEFinition method 3) — стандарт моделирования процессов, разработанный в рамках программы ICAM ВВС США. Он описывает, КАК именно выполняются процессы: в какой последовательности, при каких условиях, с какими объектами.
+                    </TextBlock>
+                    <TextBlock Style="{StaticResource Body}">
+IDEF3 является частью семейства методологий IDEF, где IDEF0 описывает функции системы (что делает), а IDEF3 — сценарии её работы (как делает и в каком порядке).
+                    </TextBlock>
+
+                    <TextBlock Style="{StaticResource H2}" Text="Два вида диаграмм IDEF3"/>
+                    <TextBlock Style="{StaticResource Body}">
+IDEF3 определяет два типа диаграмм:
+
+1. PFD (Process Flow Description) — диаграмма описания потока процессов. Показывает последовательность и условия выполнения действий. Именно этот тип реализован в данном редакторе.
+
+2. OSTN (Object State Transition Network) — сеть переходов состояний объектов. Показывает, как изменяется состояние объекта при прохождении через процессы. В данном редакторе не реализован.
+                    </TextBlock>
+
+                    <TextBlock Style="{StaticResource H2}" Text="Ключевые правила нотации PFD"/>
+                    <TextBlock Style="{StaticResource Body}">
+1. Каждый UOB-блок имеет уникальный числовой номер, указанный в левой ячейке нижней полосы.
+2. Каждый UOB-блок, кроме стартового, должен иметь хотя бы одну входящую связь.
+3. Каждый UOB-блок, кроме конечного, должен иметь хотя бы одну исходящую связь.
+4. Перекрёстки должны соединять не менее двух потоков.
+5. Все связи направлены — стрелка указывает от источника к цели.
+6. Имена UOB-блоков записываются заглавными буквами и должны быть глагольными оборотами.
+                    </TextBlock>
+
+                    <TextBlock Style="{StaticResource H2}" Text="Связь с другими стандартами"/>
+                    <TextBlock Style="{StaticResource Body}">
+IDEF3-диаграммы часто используются совместно с IDEF0-диаграммами: каждый функциональный блок IDEF0 может быть декомпозирован в диаграмму PFD, показывающую, как именно реализуется эта функция внутри.
+                    </TextBlock>
+                </StackPanel>
+
+                <!-- ══ ВКЛАДКА 1: ЭЛЕМЕНТЫ — UOB-блоки и перекрёстки ══ -->
+                <StackPanel x:Name="PageBlocks" Visibility="Collapsed" Margin="24,20,24,24" Background="#F5F5F5">
+                    <TextBlock Style="{StaticResource H1}" Text="Элементы диаграммы IDEF3 PFD"/>
+
+                    <!-- UOB-блок: прямоугольник с именем действия и номером -->
+                    <!-- UOB -->
+                    <TextBlock Style="{StaticResource H2}" Text="UOB-блок (Unit Of Behavior — единица поведения)"/>
+                    <TextBlock Style="{StaticResource Body}">
+Прямоугольник с прямыми углами (без скруглений). Описывает одно конкретное действие, событие или состояние процесса.
+
+Структура блока:
+• Верхняя область — имя действия (ALL CAPS, глагольный оборот: «ПРОВЕРИТЬ ДАННЫЕ», «ОТПРАВИТЬ ЗАЯВКУ»)
+• Нижняя полоса, разделённая вертикальной линией посередине:
+  — левая ячейка: уникальный номер блока на диаграмме
+  — правая ячейка: зарезервирована (обычно пустая)
+                    </TextBlock>
+                    <Border Style="{StaticResource Code}">
+                        <TextBox FontFamily="Consolas" FontSize="11" Foreground="#1A5276"
+                                 Background="Transparent" BorderThickness="0"
+                                 IsReadOnly="True" IsTabStop="False"
+                                 TextWrapping="NoWrap"
+                                 xml:space="preserve"> ┌──────────────────────┐
+ │   НАЗВАНИЕ ДЕЙСТВИЯ  │
+ ├───────────┬──────────┤
+ │     1     │          │
+ └───────────┴──────────┘</TextBox>
+                    </Border>
+
+                    <!-- Перекрёстки: ветвление и слияние потоков управления -->
+                    <TextBlock Style="{StaticResource H2}" Text="Перекрёстки (Junction)"/>
+                    <TextBlock Style="{StaticResource Body}">
+Квадрат (прямые углы) с символом внутри. Служит для описания ветвления (fan-out) или слияния (fan-in) потоков управления.
+
+Все перекрёстки имеют обозначение «Jn» справа сверху от квадрата, где n — порядковый номер.
+
+Внутреннее оформление квадрата указывает на тип синхронизации:
+• Одна вертикальная линия слева — асинхронный перекрёсток
+• Две вертикальные линии (слева и справа) — синхронный перекрёсток
+                    </TextBlock>
+
+                    <!-- AND асинхронный: все потоки, порядок произвольный -->
+                    <TextBlock Style="{StaticResource H2}" Text="AND асинхронный — J(&amp;)  [одна линия слева]"/>
+                    <TextBlock Style="{StaticResource Body}">
+Символ «&amp;» внутри квадрата, одна вертикальная линия у левого края.
+
+• Fan-in (слияние): ВСЕ предшествующие процессы должны завершиться (в любом порядке, не обязательно одновременно), прежде чем начнётся следующий.
+• Fan-out (ветвление): ВСЕ следующие процессы должны быть запущены (в любом порядке).
+
+Пример fan-in: «СБОРКА» начнётся только когда завершатся и «ИЗГОТОВИТЬ КОРПУС», и «ИЗГОТОВИТЬ ДЕТАЛИ».
+Пример fan-out: После «ПОЛУЧИТЬ ЗАКАЗ» одновременно запускаются «ПОДГОТОВИТЬ МАТЕРИАЛЫ» и «НАЗНАЧИТЬ ИСПОЛНИТЕЛЯ».
+                    </TextBlock>
+
+                    <!-- AND синхронный: все потоки одновременно -->
+                    <TextBlock Style="{StaticResource H2}" Text="AND синхронный — J(&amp;)s  [две линии: слева и справа]"/>
+                    <TextBlock Style="{StaticResource Body}">
+Символ «&amp;» внутри квадрата, вертикальные линии у обоих краёв.
+
+• Fan-in: ВСЕ предшествующие процессы завершаются ОДНОВРЕМЕННО.
+• Fan-out: ВСЕ следующие процессы запускаются ОДНОВРЕМЕННО.
+
+Используется для строго параллельных сценариев, где синхронность критична (например, в реальном времени или аппаратных системах).
+                    </TextBlock>
+
+                    <!-- OR асинхронный: один или несколько потоков, порядок произвольный -->
+                    <TextBlock Style="{StaticResource H2}" Text="OR асинхронный — J(O)  [одна линия слева]"/>
+                    <TextBlock Style="{StaticResource Body}">
+Символ «O» внутри квадрата, одна вертикальная линия у левого края.
+
+• Fan-in: ОДИН ИЛИ НЕСКОЛЬКО предшествующих процессов должны завершиться (в любом порядке), чтобы начался следующий.
+• Fan-out: ОДИН ИЛИ НЕСКОЛЬКО следующих процессов должны быть запущены (в любом порядке).
+
+Пример: После «ТЕСТИРОВАНИЯ» в зависимости от результата запускается «ИСПРАВИТЬ ОШИБКИ» или «ВЫПУСТИТЬ ВЕРСИЮ», или оба сразу.
+                    </TextBlock>
+
+                    <!-- OR синхронный: один или несколько потоков одновременно -->
+                    <TextBlock Style="{StaticResource H2}" Text="OR синхронный — J(O)s  [две линии: слева и справа]"/>
+                    <TextBlock Style="{StaticResource Body}">
+Символ «O» внутри квадрата, вертикальные линии у обоих краёв.
+
+• Fan-in: ОДИН ИЛИ НЕСКОЛЬКО предшествующих процессов завершаются ОДНОВРЕМЕННО.
+• Fan-out: ОДИН ИЛИ НЕСКОЛЬКО следующих процессов запускаются ОДНОВРЕМЕННО.
+                    </TextBlock>
+
+                    <!-- XOR: ровно один поток из множества (взаимоисключение) -->
+                    <TextBlock Style="{StaticResource H2}" Text="XOR (Exclusive OR) — J(X)  [одна линия слева]"/>
+                    <TextBlock Style="{StaticResource Body}">
+Символ «X» внутри квадрата, одна вертикальная линия у левого края.
+
+• Fan-in: РОВНО ОДИН предшествующий процесс завершается (взаимоисключение).
+• Fan-out: РОВНО ОДИН из следующих процессов запускается.
+
+Пример: После «ПРОВЕРИТЬ КАЧЕСТВО» либо идёт «ПРИНЯТЬ ИЗДЕЛИЕ», либо «ОТПРАВИТЬ НА ДОРАБОТКУ» — но никогда оба.
+                    </TextBlock>
+                </StackPanel>
+
+                <!-- ══ ВКЛАДКА 2: СВЯЗИ — три типа связей IDEF3 PFD ══ -->
+                <StackPanel x:Name="PageLinks" Visibility="Collapsed" Margin="24,20,24,24" Background="#F5F5F5">
+                    <TextBlock Style="{StaticResource H1}" Text="Типы связей в IDEF3 PFD"/>
+                    <TextBlock Style="{StaticResource Body}">
+В IDEF3 определены три типа связей. Все они направленные — стрелка показывает от источника к цели. Тип связи отражает характер зависимости между блоками, а не только порядок выполнения.
+
+Изменить тип связи можно через правую кнопку мыши на выбранной связи.
+                    </TextBlock>
+
+                    <!-- Связь предшествования: сплошная линия, жёсткий временной порядок -->
+                    <TextBlock Style="{StaticResource H2}" Text="1. Связь предшествования (Precedence Link)  — сплошная линия"/>
+                    <Border Style="{StaticResource Code}">
+                        <TextBox FontFamily="Consolas" FontSize="13" Foreground="#1A5276"
+                                 Background="Transparent" BorderThickness="0"
+                                 IsReadOnly="True" IsTabStop="False"
+                                 Text="[Блок A] ————————————► [Блок B]"/>
+                    </Border>
+                    <TextBlock Style="{StaticResource Body}">
+Самый распространённый тип. Означает: блок A должен завершиться ДО того, как начнётся блок B. Описывает временную последовательность — сначала одно, потом другое.
+
+Когда использовать: практически всегда, когда одно действие логически следует за другим.
+
+Примеры:
+• «ПОЛУЧИТЬ ЗАЯВКУ» → «ПРОВЕРИТЬ ДАННЫЕ» → «ОБРАБОТАТЬ ЗАЯВКУ»
+• «ИЗГОТОВИТЬ ДЕТАЛЬ» → «ПРОВЕРИТЬ КАЧЕСТВО»
+• «ПОКРАСИТЬ» → «ВЫСУШИТЬ» → «УПАКОВАТЬ»
+                    </TextBlock>
+
+                    <!-- Реляционная связь: пунктирная линия, смысловая зависимость без жёсткого порядка -->
+                    <TextBlock Style="{StaticResource H2}" Text="2. Реляционная связь (Relational Link)  — пунктирная линия"/>
+                    <Border Style="{StaticResource Code}">
+                        <TextBox FontFamily="Consolas" FontSize="13" Foreground="#1A5276"
+                                 Background="Transparent" BorderThickness="0"
+                                 IsReadOnly="True" IsTabStop="False"
+                                 Text="[Блок A] - - - - - - - ► [Блок B]"/>
+                    </Border>
+                    <TextBlock Style="{StaticResource Body}">
+Описывает смысловую или логическую зависимость между блоками без жёсткого временного ограничения. Блок A не обязательно завершается до начала блока B — они могут выполняться параллельно или в разное время, но связаны по смыслу.
+
+Когда использовать: когда один блок использует результаты другого, ссылается на него, или когда между ними есть информационная связь, но не жёсткая временная последовательность.
+
+Примеры:
+• «СОСТАВИТЬ ПЛАН» - - ► «КОНТРОЛИРОВАТЬ ВЫПОЛНЕНИЕ» (план используется при контроле, но оба могут идти параллельно)
+• «РЕГИСТРАЦИЯ КЛИЕНТА» - - ► «ФОРМИРОВАНИЕ ОТЧЁТА» (отчёт ссылается на данные регистрации)
+                    </TextBlock>
+
+                    <!-- Поток объектов: пунктир из точек, передача конкретного объекта между блоками -->
+                    <TextBlock Style="{StaticResource H2}" Text="3. Связь потока объектов (Object Flow Link)  — пунктир из точек"/>
+                    <Border Style="{StaticResource Code}">
+                        <TextBox FontFamily="Consolas" FontSize="13" Foreground="#1A5276"
+                                 Background="Transparent" BorderThickness="0"
+                                 IsReadOnly="True" IsTabStop="False"
+                                 Text="[Блок A] · · · · · · · ► [Блок B]"/>
+                    </Border>
+                    <TextBlock Style="{StaticResource Body}">
+Показывает, что конкретный объект (документ, деталь, файл, данные) переходит от одного блока к другому. Акцент — не на порядке выполнения, а на движении объекта.
+
+Когда использовать: когда важно показать, что именно передаётся между процессами — физический предмет, документ, набор данных.
+
+Примеры:
+• «ОФОРМИТЬ НАКЛАДНУЮ» · · ► «ПЕРЕДАТЬ ТОВАР» (объект — накладная)
+• «СФОРМИРОВАТЬ ОТЧЁТ» · · ► «УТВЕРДИТЬ ОТЧЁТ» (объект — отчёт)
+• «ЗАПИСАТЬ ДАННЫЕ» · · ► «ОБРАБОТАТЬ ДАННЫЕ» (объект — файл данных)
+                    </TextBlock>
+
+                    <TextBlock Style="{StaticResource H2}" Text="Как выбрать правильный тип?"/>
+                    <TextBlock Style="{StaticResource Body}">
+Задайте себе вопросы:
+
+«Одно обязательно заканчивается до начала другого?» → Связь предшествования (сплошная).
+«Между ними есть смысловая связь, но не жёсткий порядок?» → Реляционная (пунктир).
+«Между ними перемещается конкретный объект?» → Поток объектов (точки).
+
+По умолчанию при создании связи назначается тип «Предшествования» — наиболее универсальный.
+                    </TextBlock>
+                </StackPanel>
+
+                <!-- ══ ВКЛАДКА 3: УПРАВЛЕНИЕ — горячие клавиши и приёмы работы ══ -->
+                <StackPanel x:Name="PageControls" Visibility="Collapsed" Margin="24,20,24,24" Background="#F5F5F5">
+                    <TextBlock Style="{StaticResource H1}" Text="Управление редактором"/>
+
+                    <TextBlock Style="{StaticResource H2}" Text="Добавление элементов"/>
+                    <TextBlock Style="{StaticResource Body}">
+Используйте кнопки на панели инструментов. Добавление работает в двух режимах:
+
+Одиночное размещение:
+1. Нажмите кнопку элемента (UOB, J(&amp;), J(O) и т.д.) — кнопка подсветится зелёным, появится подсказка.
+2. Кликните левой кнопкой мыши на нужное место на холсте — элемент появится в точке клика.
+3. Режим автоматически завершится. Escape отменяет размещение.
+
+Непрерывное размещение (добавление нескольких элементов подряд):
+1. Удерживайте Ctrl и нажмите кнопку элемента.
+2. Каждый клик на холст добавляет новый элемент в точке клика.
+3. Нажмите Escape для выхода из режима непрерывного размещения.
+
+Курсор меняется на крестик (+) в режиме размещения.
+                    </TextBlock>
+
+                    <TextBlock Style="{StaticResource H2}" Text="Создание связей"/>
+                    <TextBlock Style="{StaticResource Body}">
+1. Нажмите кнопку «Связь» на панели инструментов.
+2. Появится оранжевый баннер — редактор перешёл в режим создания связи.
+3. Кликните на блок-источник — он подсветится синим.
+4. Кликните на блок-цель — связь будет создана автоматически.
+5. Нажмите Escape для выхода из режима связи без создания.
+
+Тип связи по умолчанию — «Предшествования» (сплошная линия). Изменить тип можно через правую кнопку мыши на связи → «Тип связи».
+                    </TextBlock>
+
+                    <TextBlock Style="{StaticResource H2}" Text="Перемещение и изменение размера"/>
+                    <TextBlock Style="{StaticResource Body}">
+• Перетащите блок левой кнопкой мыши для перемещения.
+• Маленький серый квадрат в правом нижнем углу UOB-блока — ручка изменения размера.
+• Для выбора нескольких блоков: зажмите левую кнопку на пустом месте и нарисуйте прямоугольник выделения. Все блоки внутри будут выбраны. Затем перетащите любой из них — все выбранные переместятся вместе.
+• При отпускании кнопки мыши позиция автоматически «прилипает» к сетке (если привязка включена).
+                    </TextBlock>
+
+                    <TextBlock Style="{StaticResource H2}" Text="Редактирование текста блока"/>
+                    <TextBlock Style="{StaticResource Body}">
+Дважды кликните на UOB-блок — появится поле для ввода. Введите нужный текст (он будет отображён заглавными буквами). Нажмите Enter или кликните за пределами поля для сохранения. Нажмите Escape для отмены.
+
+Редактирование текста перекрёстков не предусмотрено — их обозначение задаётся типом.
+                    </TextBlock>
+
+                    <TextBlock Style="{StaticResource H2}" Text="Контекстное меню (правая кнопка мыши)"/>
+                    <TextBlock Style="{StaticResource Body}">
+Правый клик на блоке открывает меню:
+• Редактировать текст (только для UOB)
+• На передний план / На задний план
+• Удалить
+
+Правый клик на связи открывает меню:
+• Тип связи — выбор из трёх типов (предшествования, реляционная, поток объектов)
+• Удалить связь
+
+Если мышь почти не двигалась при правом клике — откроется контекстное меню. Если мышь двигалась — произойдёт панорамирование.
+                    </TextBlock>
+
+                    <TextBlock Style="{StaticResource H2}" Text="Декомпозиция блоков"/>
+                    <TextBlock Style="{StaticResource Body}">
+Каждый UOB-блок может содержать вложенную диаграмму (декомпозицию). Ссылочное выражение в правой ячейке нижней полосы (A1, A1.2 …) указывает, к какой дочерней диаграмме относится блок.
+
+Именование уровней по стандарту IDEF3:
+• A0 — корневая (главная) диаграмма
+• A1 — декомпозиция блока №1 главной диаграммы
+• A1.3 — декомпозиция блока №3 диаграммы A1
+• A1.3.2 — декомпозиция блока №2 диаграммы A1.3
+Правило: ссылка = ссылка родителя + «.» + номер текущего блока.
+
+Создание декомпозиции:
+1. ПКМ по UOB-блоку → «▶ Создать декомпозицию».
+2. В правой ячейке нижней полосы появится жёлтое поле — введите ссылочное выражение (напр. A1) и нажмите Enter.
+3. Откроется пустая дочерняя диаграмма. Добавляйте блоки и связи как обычно.
+
+Навигация:
+• Двойной клик по блоку с декомпозицией — войти в неё.
+• ПКМ → «▶ Открыть декомпозицию» — войти явно.
+• Кнопка «← Назад» или хлебные крошки вверху холста — вернуться на уровень выше.
+• Кнопка «↖ Начало» (Ctrl+Home) — сразу на корневой уровень A0.
+
+Текущий уровень отображается:
+• В строке заголовка окна: «— Название диаграммы [A1 › A1.3]»
+• В панели хлебных крошек: A0 › A1 › A1.3 (кликабельно).
+
+Удаление декомпозиции: ПКМ → «✕ Удалить декомпозицию» (только если не находитесь внутри неё).
+                    </TextBlock>
+
+                    <TextBlock Style="{StaticResource H2}" Text="Панорамирование и масштаб"/>
+                    <TextBlock Style="{StaticResource Body}">
+• Правая кнопка мыши + перетаскивание — панорамирование холста.
+• Ctrl + колесо мыши — масштабирование относительно курсора.
+• Кнопки «-» и «+» на панели — уменьшить/увеличить масштаб.
+• Кнопка «100%» — сбросить масштаб до стандартного.
+• Кнопка «↖ Начало» (или Ctrl+Home) — вернуться в начало холста (верхний левый угол) с масштабом 100 %. Используйте, если потерялись при панорамировании или сильном уменьшении масштаба.
+                    </TextBlock>
+
+                    <TextBlock Style="{StaticResource H2}" Text="Проверка диаграммы"/>
+                    <TextBlock Style="{StaticResource Body}">
+Кнопка «Проверка» (Ctrl+R) запускает автоматическую проверку диаграммы на соответствие правилам нотации IDEF3. Открывается окно с перечнем ошибок, предупреждений и информационных замечаний. Клик на замечание, связанное с конкретным блоком, выделяет этот блок на холсте.
+                    </TextBlock>
+
+                    <TextBlock Style="{StaticResource H2}" Text="Сохранение, загрузка и экспорт"/>
+                    <TextBlock Style="{StaticResource Body}">
+• «Сохранить» (Ctrl+S) — сохранить диаграмму в файл формата .idef3.
+• «Открыть» (Ctrl+O) — загрузить ранее сохранённую диаграмму.
+• «Недавние» — список последних открытых/сохранённых файлов (до 5 штук).
+• «PNG» — экспортировать диаграмму в изображение высокого разрешения для вставки в документы Word, PDF и т.д.
+• «Свойства» — указать название диаграммы, автора и описание.
+                    </TextBlock>
+
+                    <TextBlock Style="{StaticResource H2}" Text="Горячие клавиши"/>
+                    <Border Style="{StaticResource Code}">
+                        <StackPanel>
+                            <TextBlock FontFamily="Consolas" FontSize="12" Foreground="#1A5276" Text="Ctrl+Z        — Отменить последнее действие"/>
+                            <TextBlock FontFamily="Consolas" FontSize="12" Foreground="#1A5276" Text="Ctrl+Y        — Повторить отменённое действие"/>
+                            <TextBlock FontFamily="Consolas" FontSize="12" Foreground="#1A5276" Text="Del           — Удалить выбранный элемент или связь"/>
+                            <TextBlock FontFamily="Consolas" FontSize="12" Foreground="#1A5276" Text="Escape        — Отменить режим размещения / связи / снять выделение"/>
+                            <TextBlock FontFamily="Consolas" FontSize="12" Foreground="#1A5276" Text="Ctrl+клик кнопки — Непрерывное размещение элементов"/>
+                            <TextBlock FontFamily="Consolas" FontSize="12" Foreground="#1A5276" Text="Ctrl+S        — Сохранить диаграмму"/>
+                            <TextBlock FontFamily="Consolas" FontSize="12" Foreground="#1A5276" Text="Ctrl+O        — Открыть диаграмму"/>
+                            <TextBlock FontFamily="Consolas" FontSize="12" Foreground="#1A5276" Text="Ctrl+R        — Запустить проверку диаграммы"/>
+                            <TextBlock FontFamily="Consolas" FontSize="12" Foreground="#1A5276" Text="F1            — Открыть справочник"/>
+                            <TextBlock FontFamily="Consolas" FontSize="12" Foreground="#1A5276" Text="Ctrl+ +       — Увеличить масштаб"/>
+                            <TextBlock FontFamily="Consolas" FontSize="12" Foreground="#1A5276" Text="Ctrl+ -       — Уменьшить масштаб"/>
+                            <TextBlock FontFamily="Consolas" FontSize="12" Foreground="#1A5276" Text="Ctrl+0        — Сбросить масштаб до 100%"/>
+                            <TextBlock FontFamily="Consolas" FontSize="12" Foreground="#1A5276" Text="Ctrl+Home     — Вернуться в начало холста (масштаб 100%, позиция 0;0)"/>
+                            <TextBlock FontFamily="Consolas" FontSize="12" Foreground="#1A5276" Text="Двойной клик  — Редактировать текст блока (или войти в декомпозицию, если она есть)"/>
+                            <TextBlock FontFamily="Consolas" FontSize="12" Foreground="#1A5276" Text="Ctrl+C        — Копировать выбранный блок (или группу блоков)"/>
+                            <TextBlock FontFamily="Consolas" FontSize="12" Foreground="#1A5276" Text="Ctrl+V        — Вставить скопированные блоки"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Window>

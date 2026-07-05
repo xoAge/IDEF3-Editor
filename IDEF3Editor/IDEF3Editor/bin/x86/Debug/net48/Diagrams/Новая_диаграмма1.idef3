@@ -1,0 +1,190 @@
+{
+  "Id": "b78f2b0d-2b1f-423d-a030-bcbaeee3653a",
+  "Name": "Новая диаграмма",
+  "Description": "",
+  "Created": "2026-06-19T16:30:52.73928+04:00",
+  "Modified": "2026-06-19T16:47:55.7854794+04:00",
+  "Author": "pazno",
+  "Scale": 1.2999999999999998,
+  "Nodes": [
+    {
+      "Id": "c96215d1-5c57-43e3-92c1-2f4f463d76f2",
+      "Type": "uob",
+      "X": 346.0,
+      "Y": 159.0,
+      "Width": 152.0,
+      "Height": 60.0,
+      "Text": "Провести исследование",
+      "Number": 1,
+      "Description": null,
+      "IsStartNode": false,
+      "JunctionType": null,
+      "ReferenceExpression": ""
+    },
+    {
+      "Id": "1f94044d-218a-4ade-b4d5-46460d1fa515",
+      "Type": "junction-and",
+      "X": 400.0,
+      "Y": 300.0,
+      "Width": 44.0,
+      "Height": 44.0,
+      "Text": "&",
+      "Number": 1,
+      "Description": null,
+      "IsStartNode": false,
+      "JunctionType": null,
+      "ReferenceExpression": ""
+    },
+    {
+      "Id": "3d7eab0c-326e-445a-bce4-494400a07c97",
+      "Type": "uob",
+      "X": 247.0,
+      "Y": 439.0,
+      "Width": 152.0,
+      "Height": 60.0,
+      "Text": "Взять анализы",
+      "Number": 2,
+      "Description": null,
+      "IsStartNode": false,
+      "JunctionType": null,
+      "ReferenceExpression": ""
+    },
+    {
+      "Id": "899c34a7-e3f1-4d60-aa25-22aebad7b6f0",
+      "Type": "uob",
+      "X": 480.0,
+      "Y": 440.0,
+      "Width": 152.0,
+      "Height": 60.0,
+      "Text": "Собрать историю пациента",
+      "Number": 3,
+      "Description": null,
+      "IsStartNode": false,
+      "JunctionType": null,
+      "ReferenceExpression": ""
+    },
+    {
+      "Id": "f8e64170-7706-438c-8e6c-3bfdd471b620",
+      "Type": "junction-and",
+      "X": 403.0,
+      "Y": 587.0,
+      "Width": 44.0,
+      "Height": 44.0,
+      "Text": "&",
+      "Number": 2,
+      "Description": null,
+      "IsStartNode": false,
+      "JunctionType": null,
+      "ReferenceExpression": ""
+    },
+    {
+      "Id": "b17b5b0a-fe48-423d-b448-75e557bc55ac",
+      "Type": "uob",
+      "X": 640.0,
+      "Y": 574.0,
+      "Width": 168.0,
+      "Height": 69.95,
+      "Text": "Получить полную информацию о пациенте",
+      "Number": 4,
+      "Description": null,
+      "IsStartNode": false,
+      "JunctionType": null,
+      "ReferenceExpression": ""
+    },
+    {
+      "Id": "9db3fb69-f895-4c4b-9343-58505b0d72df",
+      "Type": "uob",
+      "X": 937.0,
+      "Y": 579.0,
+      "Width": 168.0,
+      "Height": 60.0,
+      "Text": "Объяснить диагноз пациенту",
+      "Number": 5,
+      "Description": null,
+      "IsStartNode": false,
+      "JunctionType": null,
+      "ReferenceExpression": ""
+    },
+    {
+      "Id": "30042105-c23f-45b7-809d-ac4efc1ab088",
+      "Type": "uob",
+      "X": 944.6153846153843,
+      "Y": 397.84615384615381,
+      "Width": 152.0,
+      "Height": 60.0,
+      "Text": "Провести лечение",
+      "Number": 6,
+      "Description": null,
+      "IsStartNode": false,
+      "JunctionType": null,
+      "ReferenceExpression": ""
+    }
+  ],
+  "Links": [
+    {
+      "Id": "23f10153-8aac-4472-ba07-d020b1c49241",
+      "SourceId": "c96215d1-5c57-43e3-92c1-2f4f463d76f2",
+      "TargetId": "1f94044d-218a-4ade-b4d5-46460d1fa515",
+      "Type": "precedence",
+      "Label": "",
+      "Points": []
+    },
+    {
+      "Id": "b91e33f4-add5-4522-92ea-93316e929072",
+      "SourceId": "1f94044d-218a-4ade-b4d5-46460d1fa515",
+      "TargetId": "3d7eab0c-326e-445a-bce4-494400a07c97",
+      "Type": "precedence",
+      "Label": "",
+      "Points": []
+    },
+    {
+      "Id": "686a4ff3-717a-4be9-811a-b56d4bee939e",
+      "SourceId": "1f94044d-218a-4ade-b4d5-46460d1fa515",
+      "TargetId": "899c34a7-e3f1-4d60-aa25-22aebad7b6f0",
+      "Type": "precedence",
+      "Label": "",
+      "Points": []
+    },
+    {
+      "Id": "b281ff0d-0310-4b73-9b48-af33f9740078",
+      "SourceId": "3d7eab0c-326e-445a-bce4-494400a07c97",
+      "TargetId": "f8e64170-7706-438c-8e6c-3bfdd471b620",
+      "Type": "precedence",
+      "Label": "",
+      "Points": []
+    },
+    {
+      "Id": "3b25f10c-488d-4296-8673-ab54bd488806",
+      "SourceId": "899c34a7-e3f1-4d60-aa25-22aebad7b6f0",
+      "TargetId": "f8e64170-7706-438c-8e6c-3bfdd471b620",
+      "Type": "precedence",
+      "Label": "",
+      "Points": []
+    },
+    {
+      "Id": "8ce04cb0-f778-49eb-b8e7-194909e88531",
+      "SourceId": "f8e64170-7706-438c-8e6c-3bfdd471b620",
+      "TargetId": "b17b5b0a-fe48-423d-b448-75e557bc55ac",
+      "Type": "precedence",
+      "Label": "",
+      "Points": []
+    },
+    {
+      "Id": "d02e2ffc-6d25-4c2b-922d-2d10a71ae9a9",
+      "SourceId": "b17b5b0a-fe48-423d-b448-75e557bc55ac",
+      "TargetId": "9db3fb69-f895-4c4b-9343-58505b0d72df",
+      "Type": "precedence",
+      "Label": "",
+      "Points": []
+    },
+    {
+      "Id": "348b8c98-15a7-4183-b63f-5e3d860eef86",
+      "SourceId": "9db3fb69-f895-4c4b-9343-58505b0d72df",
+      "TargetId": "30042105-c23f-45b7-809d-ac4efc1ab088",
+      "Type": "relational",
+      "Label": "",
+      "Points": []
+    }
+  ],
+  "Decompositions": null
+}

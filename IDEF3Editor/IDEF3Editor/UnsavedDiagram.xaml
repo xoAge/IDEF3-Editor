@@ -1,0 +1,90 @@
+<!-- Диалог подтверждения выхода при несохранённых изменениях.
+     Кнопки «Да»/«Нет»; крестик закрывает окно как отмену -->
+<Window x:Class="IDEF3Editor.UnsavedDiagram"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Несохранённые изменения"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow"
+        ShowInTaskbar="False"
+        Background="#2B2D30">
+
+    <Window.Resources>
+        <!-- Стиль кнопки действия: скруглённые углы, эффекты наведения и нажатия -->
+        <Style x:Key="ActionBtn" TargetType="Button">
+            <Setter Property="Height"          Value="34"/>
+            <Setter Property="Width"           Value="90"/>
+            <Setter Property="FontSize"        Value="12"/>
+            <Setter Property="FontWeight"      Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor"          Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="4"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <!-- Наведение курсора: небольшое затемнение -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Opacity" Value="0.82"/>
+                            </Trigger>
+                            <!-- Нажатие: более сильное затемнение -->
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Bd" Property="Opacity" Value="0.65"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <!-- Внешняя рамка в стиле приложения -->
+    <Border Background="#2B2D30" Padding="24,20">
+        <StackPanel MinWidth="340">
+
+            <!-- Строка с иконкой вопроса и текстом -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
+                <!-- Оранжевый кружок с вопросительным знаком -->
+                <Border Width="40" Height="40" CornerRadius="20"
+                        Background="#E8650A" VerticalAlignment="Top"
+                        Margin="0,0,16,0">
+                    <TextBlock Text="?" FontSize="24" FontWeight="Bold"
+                               Foreground="White"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                </Border>
+                <!-- Текст вопроса -->
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="Диаграмма содержит несохранённые изменения."
+                               FontSize="13" Foreground="#E8E9EA"
+                               TextWrapping="Wrap"/>
+                    <TextBlock Text="Хотите сохранить изменения?"
+                               FontSize="13" Foreground="#E8E9EA"
+                               Margin="0,4,0,0"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Кнопки «Да» / «Нет» -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <!-- Да: сохранить и выйти -->
+                <Button x:Name="YesButton" Content="Да"
+                        Style="{StaticResource ActionBtn}"
+                        Background="#E8650A" Foreground="White"
+                        Margin="0,0,10,0" Click="YesButton_Click"/>
+                <!-- Нет: выйти без сохранения -->
+                <Button x:Name="NoButton" Content="Нет"
+                        Style="{StaticResource ActionBtn}"
+                        Background="#505357" Foreground="White"
+                        Click="NoButton_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</Window>

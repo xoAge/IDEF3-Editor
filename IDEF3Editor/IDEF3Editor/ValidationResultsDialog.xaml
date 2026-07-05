@@ -1,0 +1,86 @@
+<!-- Диалог результатов валидации IDEF3-диаграммы:
+     заголовок со статистикой, прокручиваемый список нарушений, нижняя строка итогов -->
+<Window x:Class="IDEF3Editor.ValidationResultsDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Проверка диаграммы IDEF3"
+        Width="620" Height="480"
+        MinWidth="480" MinHeight="320"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="SingleBorderWindow"
+        ShowInTaskbar="False"
+        Background="#2B2D30">
+
+    <Grid Background="#2B2D30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>   <!-- шапка: заголовок и счётчик нарушений -->
+            <RowDefinition Height="*"/>      <!-- прокручиваемый список нарушений -->
+            <RowDefinition Height="Auto"/>   <!-- подвал: итоговое сообщение и кнопка -->
+        </Grid.RowDefinitions>
+
+        <!-- Шапка: тёмная полоса с оранжевым акцентом, названием и счётчиком нарушений -->
+        <Border Grid.Row="0" Background="#2B2D30"
+                BorderBrush="#25272A" BorderThickness="0,0,0,1"
+                Padding="16,12">
+            <Grid>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <!-- Вертикальная оранжевая полоска-акцент слева от заголовка -->
+                    <Border Width="3" Height="20" CornerRadius="2"
+                            Background="#E8650A" Margin="0,0,10,0"/>
+                    <TextBlock Text="Проверка диаграммы"
+                               FontSize="15" FontWeight="Bold"
+                               Foreground="White" VerticalAlignment="Center"/>
+                    <!-- Счётчик ошибок / предупреждений / замечаний (заполняется из code-behind) -->
+                    <TextBlock x:Name="SummaryText"
+                               FontSize="12" Foreground="#9B9EA3"
+                               VerticalAlignment="Center" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Список нарушений: строки добавляются динамически из code-behind в IssuePanel -->
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto"
+                      Background="#2B2D30"
+                      Margin="10,8,10,4">
+            <StackPanel x:Name="IssuePanel" Margin="0,0,0,4"/>
+        </ScrollViewer>
+
+        <!-- Подвал: итоговое сообщение слева и кнопка «Закрыть» справа -->
+        <Border Grid.Row="2"
+                Background="#3D3F43"
+                BorderBrush="#25272A" BorderThickness="0,1,0,0"
+                Padding="14,8">
+            <Grid>
+                <!-- Итоговое сообщение (нет нарушений / есть ошибки / только предупреждения) -->
+                <TextBlock x:Name="FooterText"
+                           FontSize="11" Foreground="#9B9EA3"
+                           VerticalAlignment="Center"/>
+                <!-- Кнопка закрытия диалога со скруглёнными углами и эффектом наведения -->
+                <Button Content="Закрыть"
+                        HorizontalAlignment="Right"
+                        Width="90" Height="30"
+                        Click="CloseBtn_Click"
+                        Background="#E8650A" Foreground="White"
+                        BorderThickness="0" Cursor="Hand"
+                        FontWeight="SemiBold">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="Bd" Background="{TemplateBinding Background}"
+                                    CornerRadius="4">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <!-- Наведение курсора: лёгкое затемнение -->
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="Bd" Property="Opacity" Value="0.82"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

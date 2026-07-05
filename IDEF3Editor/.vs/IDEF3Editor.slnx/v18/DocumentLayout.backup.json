@@ -1,0 +1,133 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\pazno\\Desktop\\\u0412\u041A\u0420\\IDEF3Editor\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{477E79B9-508D-C83E-56DB-011F09CC8F76}|IDEF3Editor\\IDEF3Editor.csproj|c:\\users\\pazno\\desktop\\\u0432\u043A\u0440\\idef3editor\\idef3editor\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{477E79B9-508D-C83E-56DB-011F09CC8F76}|IDEF3Editor\\IDEF3Editor.csproj|solutionrelative:idef3editor\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{477E79B9-508D-C83E-56DB-011F09CC8F76}|IDEF3Editor\\IDEF3Editor.csproj|c:\\users\\pazno\\desktop\\\u0432\u043A\u0440\\idef3editor\\idef3editor\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{477E79B9-508D-C83E-56DB-011F09CC8F76}|IDEF3Editor\\IDEF3Editor.csproj|solutionrelative:idef3editor\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{477E79B9-508D-C83E-56DB-011F09CC8F76}|IDEF3Editor\\IDEF3Editor.csproj|c:\\users\\pazno\\desktop\\\u0432\u043A\u0440\\idef3editor\\idef3editor\\diagrammediator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{477E79B9-508D-C83E-56DB-011F09CC8F76}|IDEF3Editor\\IDEF3Editor.csproj|solutionrelative:idef3editor\\diagrammediator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{477E79B9-508D-C83E-56DB-011F09CC8F76}|IDEF3Editor\\IDEF3Editor.csproj|c:\\users\\pazno\\desktop\\\u0432\u043A\u0440\\idef3editor\\idef3editor\\savemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{477E79B9-508D-C83E-56DB-011F09CC8F76}|IDEF3Editor\\IDEF3Editor.csproj|solutionrelative:idef3editor\\savemodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{477E79B9-508D-C83E-56DB-011F09CC8F76}|IDEF3Editor\\IDEF3Editor.csproj|c:\\users\\pazno\\desktop\\\u0432\u043A\u0440\\idef3editor\\idef3editor\\idef3validator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{477E79B9-508D-C83E-56DB-011F09CC8F76}|IDEF3Editor\\IDEF3Editor.csproj|solutionrelative:idef3editor\\idef3validator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{477E79B9-508D-C83E-56DB-011F09CC8F76}|IDEF3Editor\\IDEF3Editor.csproj|c:\\users\\pazno\\desktop\\\u0432\u043A\u0440\\idef3editor\\idef3editor\\link.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{477E79B9-508D-C83E-56DB-011F09CC8F76}|IDEF3Editor\\IDEF3Editor.csproj|solutionrelative:idef3editor\\link.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{477E79B9-508D-C83E-56DB-011F09CC8F76}|IDEF3Editor\\IDEF3Editor.csproj|c:\\users\\pazno\\desktop\\\u0432\u043A\u0440\\idef3editor\\idef3editor\\node.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{477E79B9-508D-C83E-56DB-011F09CC8F76}|IDEF3Editor\\IDEF3Editor.csproj|solutionrelative:idef3editor\\node.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SaveModels.cs",
+              "DocumentMoniker": "C:\\Users\\pazno\\Desktop\\\u0412\u041A\u0420\\IDEF3Editor\\IDEF3Editor\\SaveModels.cs",
+              "RelativeDocumentMoniker": "IDEF3Editor\\SaveModels.cs",
+              "ToolTip": "C:\\Users\\pazno\\Desktop\\\u0412\u041A\u0420\\IDEF3Editor\\IDEF3Editor\\SaveModels.cs",
+              "RelativeToolTip": "IDEF3Editor\\SaveModels.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAUwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-16T14:51:00.875Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\pazno\\Desktop\\\u0412\u041A\u0420\\IDEF3Editor\\IDEF3Editor\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "IDEF3Editor\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\pazno\\Desktop\\\u0412\u041A\u0420\\IDEF3Editor\\IDEF3Editor\\MainWindow.xaml",
+              "RelativeToolTip": "IDEF3Editor\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-18T04:31:52.58Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\pazno\\Desktop\\\u0412\u041A\u0420\\IDEF3Editor\\IDEF3Editor\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "IDEF3Editor\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\pazno\\Desktop\\\u0412\u041A\u0420\\IDEF3Editor\\IDEF3Editor\\MainWindow.xaml.cs",
+              "RelativeToolTip": "IDEF3Editor\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAHcAAAAAAAAAAAApwIMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T19:27:23.608Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DiagramMediator.cs",
+              "DocumentMoniker": "C:\\Users\\pazno\\Desktop\\\u0412\u041A\u0420\\IDEF3Editor\\IDEF3Editor\\DiagramMediator.cs",
+              "RelativeDocumentMoniker": "IDEF3Editor\\DiagramMediator.cs",
+              "ToolTip": "C:\\Users\\pazno\\Desktop\\\u0412\u041A\u0420\\IDEF3Editor\\IDEF3Editor\\DiagramMediator.cs",
+              "RelativeToolTip": "IDEF3Editor\\DiagramMediator.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACAAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-16T13:23:50.337Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Link.cs",
+              "DocumentMoniker": "C:\\Users\\pazno\\Desktop\\\u0412\u041A\u0420\\IDEF3Editor\\IDEF3Editor\\Link.cs",
+              "RelativeDocumentMoniker": "IDEF3Editor\\Link.cs",
+              "ToolTip": "C:\\Users\\pazno\\Desktop\\\u0412\u041A\u0420\\IDEF3Editor\\IDEF3Editor\\Link.cs",
+              "RelativeToolTip": "IDEF3Editor\\Link.cs",
+              "ViewState": "AgIAAG0AAAAAAAAAAAAuwHMAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-14T19:39:38.353Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Node.cs",
+              "DocumentMoniker": "C:\\Users\\pazno\\Desktop\\\u0412\u041A\u0420\\IDEF3Editor\\IDEF3Editor\\Node.cs",
+              "RelativeDocumentMoniker": "IDEF3Editor\\Node.cs",
+              "ToolTip": "C:\\Users\\pazno\\Desktop\\\u0412\u041A\u0420\\IDEF3Editor\\IDEF3Editor\\Node.cs",
+              "RelativeToolTip": "IDEF3Editor\\Node.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAYAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-13T22:09:49.102Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Idef3Validator.cs",
+              "DocumentMoniker": "C:\\Users\\pazno\\Desktop\\\u0412\u041A\u0420\\IDEF3Editor\\IDEF3Editor\\Idef3Validator.cs",
+              "RelativeDocumentMoniker": "IDEF3Editor\\Idef3Validator.cs",
+              "ToolTip": "C:\\Users\\pazno\\Desktop\\\u0412\u041A\u0420\\IDEF3Editor\\IDEF3Editor\\Idef3Validator.cs",
+              "RelativeToolTip": "IDEF3Editor\\Idef3Validator.cs",
+              "ViewState": "AgIAAJMAAAAAAAAAAAAAAJgAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-03T19:45:13.362Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
